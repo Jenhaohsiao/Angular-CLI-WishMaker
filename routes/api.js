@@ -32,7 +32,172 @@ router.post('/register', function(req, res) {
             res.status(200).send(registerdUser);
         }
     });
-
 })
+
+router.post('/login', function(req, res) {
+    var userData = req.body;
+
+    User.findOne({
+        email: userData.email
+    }, function(error, user) {
+        if (error) {
+            console.log(error)
+        } else {
+            if (!user) {
+                res.status(401).send("Invalid email");
+            } else if (user.password !== userData.password) {
+                res.status(401).send('Invail Password');
+            } else {
+                res.status(200).send(user);
+            }
+        }
+    })
+})
+
+router.get('/events', function(req, res) {
+
+    let events = [
+
+        {
+            "_id": "1",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "2",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "3",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "4",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "5",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "6",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "7",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "8",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "9",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        }
+
+    ]
+
+    res.json(events)
+})
+
+
+router.get('/special', function(req, res) {
+
+    let events = [
+
+        {
+            "_id": "1",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "2",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "3",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "4",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "5",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "6",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "7",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "8",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        },
+
+        {
+            "_id": "9",
+            "name": "Auto Expo",
+            "description": "Lorem ipsum",
+            "data": "2016-08-25T16:33:05.678Z"
+        }
+
+    ]
+
+    res.json(events)
+})
+
 
 module.exports = router;

@@ -5,10 +5,9 @@
  const api = require('../routes/api');
 
  app.use(bodyParser.json());
+
  app.use('/api', api);
-
  app.get('/', function(req, res) {
-
      res.send('Hello from server');
  })
 
