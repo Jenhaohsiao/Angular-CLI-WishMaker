@@ -1,0 +1,25 @@
+{
+  "name": "Angular_CLI_authentication",
+  "version": "1.0.0",
+  "description": "angular cli authentication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jenhaohsiao/angular-cli-authentication.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jenhaohsiao/angular-cli-authentication/issues"
+  },
+  "homepage": "https://github.com/Jenhaohsiao/angular-cli-authentication#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  }
+}
