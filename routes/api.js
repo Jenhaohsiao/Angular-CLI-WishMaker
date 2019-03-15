@@ -1,11 +1,13 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../server/models/user');
 // mLab DB
 const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
 // Localhost DB
-const localDB = "mongodb://localhost:27017/angular_cli_auth"
+const localDB = "mongodb://localhost:27017/angular_cli_auth";
+const tokenSecretKey = "harrypotter";
 
 mongoose.connect(localDB, function(err) {
     if (err) {
@@ -29,7 +31,14 @@ router.post('/register', function(req, res) {
         if (error) {
             console.log(error)
         } else {
+
+            let payload = {
+                subject: registerdUser._id
+            };
+            let token = jwt.sign(payload, tokenSecretKey);
+            // res.status(200).send(token);
             res.status(200).send(registerdUser);
+
         }
     });
 })
@@ -48,7 +57,13 @@ router.post('/login', function(req, res) {
             } else if (user.password !== userData.password) {
                 res.status(401).send('Invail Password');
             } else {
+                let payload = {
+                    subject: user._id
+                };
+                let token = jwt.sign(payload, tokenSecretKey);
+                // res.status(200).send(token);
                 res.status(200).send(user);
+
             }
         }
     })
@@ -62,63 +77,63 @@ router.get('/events', function(req, res) {
             "_id": "1",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "2",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "3",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "4",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "5",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "6",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "7",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "8",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "9",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         }
 
     ]
@@ -135,63 +150,63 @@ router.get('/special', function(req, res) {
             "_id": "1",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "2",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "3",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "4",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "5",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "6",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "7",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "8",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         },
 
         {
             "_id": "9",
             "name": "Auto Expo",
             "description": "Lorem ipsum",
-            "data": "2016-08-25T16:33:05.678Z"
+            "date": "2016-08-25T16:33:05.678Z"
         }
 
     ]
