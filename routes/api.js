@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../server/models/user');
+const User = require('../BackEnd/models/user');
 // mLab DB
 const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
 // Localhost DB
@@ -46,6 +46,7 @@ router.get('/', function(req, res) {
 
 router.post('/register', function(req, res) {
     var user = new User();
+    user.userName = req.body.userName;
     user.email = req.body.email;
     user.password = req.body.password;
     user.save(function(error, registerdUser) {
@@ -70,24 +71,43 @@ router.post('/login', function(req, res) {
     var userData = req.body;
 
     User.findOne({
-        email: userData.email
+        userName: userData.userName,
     }, function(error, user) {
         if (error) {
             console.log(error)
         } else {
-            if (!user) {
-                res.status(401).send("Invalid email");
-            } else if (user.password !== userData.password) {
-                res.status(401).send('Invail Password');
-            } else {
-                let payload = {
-                    subject: user._id
-                };
-                let token = jwt.sign(payload, tokenSecretKey);
-                res.status(200).send({
-                    token
-                });
 
+
+            if (!user) {
+                res.status(401).send("Invalid user name");
+            } else {
+
+                if (user.password) {
+                    var validPassword = user.comparePassword(userData.password); // get true or false
+
+                    if (validPassword) {
+                        let payload = {
+                            subject: user._id
+                        };
+                        let token = jwt.sign(payload, tokenSecretKey);
+                        res.status(200).send({
+                            token
+                        });
+
+                    } else {
+                        res.status(401).send('Invail Password');
+                    }
+
+                } else {
+                    let payload = {
+                        subject: user._id
+                    };
+                    let token = jwt.sign(payload, tokenSecretKey);
+                    res.status(200).send({
+                        token
+                    });
+
+                }
             }
         }
     })
