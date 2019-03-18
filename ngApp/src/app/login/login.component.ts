@@ -14,11 +14,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    console.log(this.loginUserData);
     this._auth.loginUser(this.loginUserData)
       .subscribe(
         res => {
-          console.log(res);
+          console.log("Login res:", res);
           localStorage.setItem('token', res.token)
         },
         err => console.log(err)

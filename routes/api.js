@@ -7,7 +7,7 @@ const User = require('../server/models/user');
 const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
 // Localhost DB
 const localDB = "mongodb://localhost:27017/angular_cli_auth";
-const tokenSecretKey = "harrypotter";
+const tokenSecretKey = 'harrypotter';
 
 mongoose.connect(localDB, function(err) {
     if (err) {
@@ -36,8 +36,9 @@ router.post('/register', function(req, res) {
                 subject: registerdUser._id
             };
             let token = jwt.sign(payload, tokenSecretKey);
-            // res.status(200).send(token);
-            res.status(200).send(registerdUser);
+            res.status(200).send({
+                token
+            });
 
         }
     });
@@ -61,8 +62,9 @@ router.post('/login', function(req, res) {
                     subject: user._id
                 };
                 let token = jwt.sign(payload, tokenSecretKey);
-                // res.status(200).send(token);
-                res.status(200).send(user);
+                res.status(200).send({
+                    token
+                });
 
             }
         }
