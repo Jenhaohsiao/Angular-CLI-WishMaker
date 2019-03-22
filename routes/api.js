@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../BackEnd/models/user');
+const User = require('../BackEnd/models/user.model');
 // mLab DB
 const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
 // Localhost DB

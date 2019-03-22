@@ -12,6 +12,10 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/special" routerLinkActive="active">Members Special</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/usermanagement">Users management</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             <a class="nav-link" *ngIf="_authService.loggedIn()" routerLink="/profile" routerLinkActive="active">profile</a>

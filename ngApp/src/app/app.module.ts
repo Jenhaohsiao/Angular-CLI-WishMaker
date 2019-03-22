@@ -14,6 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './profile/profile.component';
     EventsComponent,
     SpecialEventsComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
