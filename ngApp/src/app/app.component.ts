@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngApp';
+  title = 'WishMaker';
 
   constructor(private _authService: AuthService) {
 

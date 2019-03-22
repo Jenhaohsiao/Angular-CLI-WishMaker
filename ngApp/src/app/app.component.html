@@ -1,4 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="nav-button-row">
+        <button routerLink="/" mat-raised-button color="primary">Home</button>
+        <button routerLink="/events" routerLinkActive="active" mat-raised-button>Events</button>
+        <button routerLink="/special" routerLinkActive="active" mat-raised-button>Members Special</button>
+        <button routerLink="/usermanagement" mat-raised-button>Users management</button>
+        <button routerLink="/profile" mat-raised-button color="primary">Profile</button>
+        <button routerLink="/login" routerLinkActive="active" *ngIf="!_authService.loggedIn()" mat-raised-button color="primary">Login</button>
+        <button routerLink="/register" routerLinkActive="active" *ngIf="!_authService.loggedIn()" mat-raised-button color="primary">Register</button>
+        <button (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()" mat-raised-button color="warn">Logout</button>
+    </div>
+
+</nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Eventhub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,12 +36,13 @@
             <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
             <a class="nav-link" style="cursor:pointer" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">Logout</a>
 
-
         </ul>
     </div>
-</nav>
+</nav> -->
+
+
+
+
 <div class="container">
-    <button mat-button>Hello World！</button>
-    <button mat-raised-button color="primary">Hello World！</button>
     <router-outlet></router-outlet>
 </div>

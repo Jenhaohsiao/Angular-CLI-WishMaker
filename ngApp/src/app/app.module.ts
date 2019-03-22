@@ -17,6 +17,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+
   ],
   providers: [AuthService, AuthGuard, EventService, {
     provide: HTTP_INTERCEPTORS,
