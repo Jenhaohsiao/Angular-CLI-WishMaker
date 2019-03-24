@@ -18,6 +18,9 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
+import { UserTypeListComponent } from './user-type-list/user-type-list.component';
+import { UserTypeEditComponent } from './user-type-edit/user-type-edit.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -29,7 +32,9 @@ import { MatMenuModule } from '@angular/material/menu';
     SpecialEventsComponent,
     HomeComponent,
     ProfileComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    UserTypeListComponent,
+    UserTypeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatIconModule,
 
   ],
   providers: [AuthService, AuthGuard, EventService, {

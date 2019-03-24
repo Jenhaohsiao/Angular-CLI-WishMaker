@@ -19,6 +19,7 @@ const userSchema = new Schema({
     },
 })
 
+// encode and decode
 userSchema.pre('save', function(next) {
     var user = this;
 
@@ -31,10 +32,13 @@ userSchema.pre('save', function(next) {
     next();
 })
 
+
 userSchema.methods.comparePassword = function(_password) {
 
     return bcrypt.compareSync(_password, this.password);
 }
+
+// encode and decode-end
 
 
 module.exports = mongoose.model('user', userSchema, 'users')

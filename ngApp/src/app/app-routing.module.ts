@@ -8,6 +8,8 @@ import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { UserTypeListComponent } from './user-type-list/user-type-list.component';
+import { UserTypeEditComponent } from './user-type-edit/user-type-edit.component';
 
 const routes: Routes = [
   {
@@ -38,7 +40,15 @@ const routes: Routes = [
   {
     path: 'usermanagement',
     component: UserManagementComponent
-  }
+  },
+  {
+    path: 'usertypelist',
+    component: UserTypeListComponent
+  },
+  {
+    path: 'usertypeedit',
+    component: UserTypeEditComponent
+  },
 ];
 
 @NgModule({

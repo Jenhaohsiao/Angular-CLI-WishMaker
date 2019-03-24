@@ -11,7 +11,30 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+
+/* For remove blue color outline when user push any button */
+
+*:focus {
+    outline: none !important;
+    border: 0 !important;
+}
+
+
+/* For remove blue color outline when user push any button -end*/
+
 .nav-button-row button,
 .nav-button-row a {
     margin-right: 8px;
+}
+
+.rightEndButton {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+}
+
+.rightEndButton2nd {
+    position: fixed;
+    right: 120px;
+    bottom: 50px;
 }
