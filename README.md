@@ -1,4 +1,4 @@
-# angular-cli-authentication
+# WishMaker 
 
-## MEAN stcak Porject
+## MEAN stcak  (Angular Cli) Porject
  
