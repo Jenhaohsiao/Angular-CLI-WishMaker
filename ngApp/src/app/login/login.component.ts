@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _auth: AuthService,
     private _router: Router,
-    private snackBar: MatSnackBar,
+    private _snackBar: MatSnackBar,
 
   ) { }
 
@@ -29,18 +29,22 @@ export class LoginComponent implements OnInit {
         res => {
           console.log("Login res:", res);
           localStorage.setItem('token', res.token)
+
+          this.snackBarMessage = res.message;
+
+          this._snackBar.open(this.snackBarMessage, null, {
+            duration: this.snackBarDurationInSeconds * 1000,
+          });
+
+
           this._router.navigate(['/']);
         },
-        // err => {
-        //   console.log(err.error.message)
-        //   this.snackBarMessage = err.error.message;
-        // }
 
         err => {
 
           this.snackBarMessage = err.error.message;
 
-          this.snackBar.open(this.snackBarMessage, null, {
+          this._snackBar.open(this.snackBarMessage, null, {
             duration: this.snackBarDurationInSeconds * 1000,
           });
 

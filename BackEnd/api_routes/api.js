@@ -2,7 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const mongoose = require('mongoose');
-const User = require('../BackEnd/models/user.model');
+const User = require('../models/user.model');
 // mLab DB
 const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
 // Localhost DB
@@ -91,33 +91,43 @@ router.post('/login', function(req, res) {
                     message: 'Invalid user name',
                     error: error,
                 });
-                return res;
 
             } else {
 
-                if (user.password) {
+                if (userData.password) {
                     var validPassword = user.comparePassword(userData.password); // get true or false
 
                     if (validPassword) {
                         let payload = {
-                            subject: user._id
+                            username: user.username,
+                            email: user.email,
+                            userType: user.userType,
                         };
                         let token = jwt.sign(payload, tokenSecretKey);
-                        res.status(200).send({
-                            token
+
+
+                        res.status(200)
+                        res.json({
+                            success: false,
+                            message: 'Logged in successfully',
+                            token: token
                         });
 
                     } else {
-                        res.status(401).send('Invail Password');
+                        res.status(401)
+                        res.json({
+                            success: false,
+                            message: 'Invail Password',
+                            error: error,
+                        });
                     }
 
                 } else {
-                    let payload = {
-                        subject: user._id
-                    };
-                    let token = jwt.sign(payload, tokenSecretKey);
-                    res.status(200).send({
-                        token
+                    res.status(401)
+                    res.json({
+                        success: false,
+                        message: 'It needs password',
+                        error: error,
                     });
 
                 }

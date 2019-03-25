@@ -5,7 +5,7 @@
  //  const PORT = 3000;
 
  const cors = require('cors');
- const api = require('../routes/api');
+ const api = require('./api_routes/api');
 
  app.use(cors());
 

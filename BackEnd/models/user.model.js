@@ -17,6 +17,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+
+    userType: {
+
+    }
 })
 
 // encode and decode
