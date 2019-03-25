@@ -74,12 +74,25 @@ router.post('/login', function(req, res) {
         userName: userData.userName,
     }, function(error, user) {
         if (error) {
-            console.log(error)
+            res.status(401)
+            res.json({
+                success: false,
+                message: 'Error has occurred',
+                error: error,
+            });
+            return res;
+
         } else {
 
-
             if (!user) {
-                res.status(401).send("Invalid user name");
+                res.status(401)
+                res.json({
+                    success: false,
+                    message: 'Invalid user name',
+                    error: error,
+                });
+                return res;
+
             } else {
 
                 if (user.password) {

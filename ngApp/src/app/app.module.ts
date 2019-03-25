@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { UserTypeListComponent } from './user-type-list/user-type-list.component';
 import { UserTypeEditComponent } from './user-type-edit/user-type-edit.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from "@angular/material";
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     MatMenuModule,
     MatIconModule,
-
+    MatSnackBarModule,
   ],
   providers: [AuthService, AuthGuard, EventService, {
     provide: HTTP_INTERCEPTORS,
