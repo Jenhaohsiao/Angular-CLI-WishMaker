@@ -49,11 +49,15 @@ import { MatSnackBarModule } from "@angular/material";
     MatIconModule,
     MatSnackBarModule,
   ],
-  providers: [AuthService, AuthGuard, EventService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [
+    AuthService,
+    AuthGuard,
+    EventService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
