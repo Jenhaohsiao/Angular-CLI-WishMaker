@@ -3,20 +3,21 @@
         <button routerLink="/" mat-raised-button color="primary">Home</button>
         <button routerLink="/events" routerLinkActive="active" mat-raised-button>Events</button>
         <button routerLink="/special" routerLinkActive="active" mat-raised-button>Members Special</button>
-        <button routerLink="/profile" outerLinkActive="active" *ngIf="_authService.loggedIn()" mat-raised-button color="primary">Profile</button>
-        <button routerLink="/login" routerLinkActive="active" *ngIf="!_authService.loggedIn()" mat-raised-button color="primary">Login</button>
-        <button routerLink="/register" routerLinkActive="active" *ngIf="!_authService.loggedIn()" mat-raised-button color="primary">Register</button>
-        <button [matMenuTriggerFor]="systemSetup" *ngIf="_authService.loggedIn()" mat-raised-button>System Setup</button>
-        <button (click)="_authService.logoutUser()" *ngIf="_authService.loggedIn()" mat-raised-button color="warn">Logout</button>
+        <button routerLink="/profile" outerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button color="primary">Profile</button>
+        <button routerLink="/login" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Login</button>
+        <button routerLink="/register" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Register</button>
+        <button [matMenuTriggerFor]="systemSetup" *ngIf="_authService.isAuthenticated()" mat-raised-button>System
+      Setup</button>
+        <button (click)="_authService.logoutUser()" *ngIf="_authService.isAuthenticated()" mat-raised-button color="warn">Logout</button>
 
     </div>
 
 </nav>
 
 <mat-menu #systemSetup="matMenu">
-    <button routerLink="/usermanagement" outerLinkActive="active" *ngIf="_authService.loggedIn()" mat-raised-button>Users
+    <button routerLink="/usermanagement" outerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button>Users
     management</button>
-    <button routerLink="/usertypelist" *ngIf="_authService.loggedIn()" mat-menu-item> User Type</button>
+    <button routerLink="/usertypelist" *ngIf="_authService.isAuthenticated()" mat-menu-item> User Type</button>
 </mat-menu>
 
 

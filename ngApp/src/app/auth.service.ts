@@ -26,7 +26,7 @@ export class AuthService {
     return this.http.post<any>(this._loginUrl, user)
   }
 
-  loggedIn() {
+  isAuthenticated() {
     return !!localStorage.getItem('token') //"!!" just return "true or false"
   }
 

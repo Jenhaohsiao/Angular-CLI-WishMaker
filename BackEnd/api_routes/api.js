@@ -69,71 +69,80 @@ router.post('/register', function(req, res) {
 
 router.post('/login', function(req, res) {
     var userData = req.body;
-
-    User.findOne({
-        userName: userData.userName,
-    }, function(error, user) {
-        if (error) {
-            res.status(401)
-            res.json({
-                success: false,
-                message: 'Error has occurred',
-                error: error,
-            });
-            return res;
-
-        } else {
-
-            if (!user) {
+    try {
+        User.findOne({
+            userName: userData.userName,
+        }, function(error, user) {
+            if (error) {
                 res.status(401)
                 res.json({
                     success: false,
-                    message: 'Invalid user name',
+                    message: 'Error has occurred',
                     error: error,
                 });
+                return res;
 
             } else {
 
-                if (userData.password) {
-                    var validPassword = user.comparePassword(userData.password); // get true or false
+                if (!user) {
+                    res.status(401)
+                    res.json({
+                        success: false,
+                        message: 'Invalid user name',
+                        error: error,
+                    });
 
-                    if (validPassword) {
-                        let payload = {
-                            username: user.username,
-                            email: user.email,
-                            userType: user.userType,
-                        };
-                        let token = jwt.sign(payload, tokenSecretKey);
+                } else {
+
+                    if (userData.password) {
+                        var validPassword = user.comparePassword(userData.password); // get true or false
+
+                        if (validPassword) {
+                            let payload = {
+                                username: user.userName,
+                                email: user.email,
+                                userType: user.userType,
+                            };
+                            let token = jwt.sign(payload, tokenSecretKey, {
+                                expiresIn: '600s'
+                            });
 
 
-                        res.status(200)
-                        res.json({
-                            success: false,
-                            message: 'Logged in successfully',
-                            token: token
-                        });
+                            res.status(200)
+                            res.json({
+                                success: false,
+                                message: 'Authenticated and Logged in successfully',
+                                token: token
+                            });
+
+                        } else {
+                            res.status(401)
+                            res.json({
+                                success: false,
+                                message: 'Invail Password',
+                                error: error,
+                            });
+                        }
 
                     } else {
                         res.status(401)
                         res.json({
                             success: false,
-                            message: 'Invail Password',
+                            message: 'It needs password',
                             error: error,
                         });
+
                     }
-
-                } else {
-                    res.status(401)
-                    res.json({
-                        success: false,
-                        message: 'It needs password',
-                        error: error,
-                    });
-
                 }
             }
-        }
-    })
+        })
+
+    } catch (err) {
+        console.log("An error occurred with Login");
+        console.error(err);
+        cb(err);
+        return;
+    }
 })
 
 router.get('/events', function(req, res) {
