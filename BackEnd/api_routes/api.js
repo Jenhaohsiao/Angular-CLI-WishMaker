@@ -1,21 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const mongoose = require('mongoose');
 const User = require('../models/user.model');
-// mLab DB
-const mLabDB = "mongodb://userjenhao:2loixrui@ds211625.mlab.com:11625/angular_cli_auth";
-// Localhost DB
-const localDB = "mongodb://localhost:27017/angular_cli_auth";
 const tokenSecretKey = 'harrypotter';
 
-mongoose.connect(localDB, function(err) {
-    if (err) {
-        console.log("the server is NOT connected,err:", err);
-    } else {
-        console.log("Great, the server is connected!!");
-    }
-});
 
 function verifyToken(req, res, next) {
     if (!req.headers.authorization) {
@@ -41,7 +29,7 @@ function verifyToken(req, res, next) {
 
 
 router.get('/', function(req, res) {
-    res.send('From API route');
+    res.send('Root From API route');
 });
 
 router.post('/register', function(req, res) {
