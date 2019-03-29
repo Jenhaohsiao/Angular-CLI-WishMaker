@@ -8,12 +8,10 @@
  const api = require('./api_routes/api');
 
 
+ // cors (Cross-origin resource sharing)
  app.use(cors());
 
  app.use(bodyParser.json());
-
- app.use('/', dbRoute); //When you connect to mongoDFB
- app.use('/api', api); // When you use API
 
  app.get('/', function(req, res) {
      res.send('Hello from server.js');
@@ -22,3 +20,9 @@
  app.listen(PORT, function() {
      console.log('Server is running on localhost:', PORT);
  })
+
+
+ app.use('/', dbRoute); //When you connect to mongoDFB
+ app.use('/api', api.router); // When you use Root API
+ app.use('/api/authorize', api.authorize); // When you use authorize API
+ app.use('/api/event', api.event); // When you use authorize API

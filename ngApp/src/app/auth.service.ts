@@ -8,8 +8,8 @@ import { MatSnackBar } from '@angular/material';
 })
 export class AuthService {
 
-  private _registerUrl = "http://localhost:3000/api/register"
-  private _loginUrl = "http://localhost:3000/api/login"
+  private _registerUrl = "http://localhost:3000/api/authorize/register"
+  private _loginUrl = "http://localhost:3000/api/authorize/login"
 
   constructor(
     private http: HttpClient,
