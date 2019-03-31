@@ -9,6 +9,16 @@
             <div class="card-body">
                 <form class="form">
 
+                    <mat-form-field>
+                        <mat-label>User Type</mat-label>
+
+                        <mat-select [(value)]="registerUserData.userType" required>
+                            <mat-option value="wisher">Wisher</mat-option>
+                            <mat-option value="santa"> Santa Claus</mat-option>
+                            <mat-option value="elf">Elf</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
                     <div class="form-group">
                         <label for=" ">Username</label>
                         <input [(ngModel)]="registerUserData.userName" name="userName" type="text" class="form-control rounded-0" required>

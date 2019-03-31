@@ -26,6 +26,20 @@ function verifyToken(req, res, next) {
 
 }
 
+function setJWTPayload(_user) {
+
+    let _payload = {
+        profile: {
+            username: _user.userName,
+            email: _user.email,
+            userType: _user.userType,
+        }
+    };
+
+    return _payload
+
+}
+
 router.post('/login', function(req, res) {
     var userData = req.body;
     try {
@@ -57,11 +71,10 @@ router.post('/login', function(req, res) {
                         var validPassword = user.comparePassword(userData.password); // get true or false
 
                         if (validPassword) {
-                            let payload = {
-                                username: user.userName,
-                                email: user.email,
-                                userType: user.userType,
-                            };
+
+
+                            let payload = setJWTPayload(user);
+
                             let token = jwt.sign(payload, tokenSecretKey, {
                                 expiresIn: '600s'
                             });
@@ -110,6 +123,7 @@ router.post('/login', function(req, res) {
 
 module.exports = {
     router: router,
-    verifyToken: verifyToken
+    verifyToken: verifyToken,
+    setJWTPayload: setJWTPayload,
 
 };

@@ -23,7 +23,8 @@ import { UserTypeEditComponent } from './user-type-edit/user-type-edit.component
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from "@angular/material";
 import { MatToolbarModule } from "@angular/material/toolbar";
-
+import { MatSelectModule } from "@angular/material/select";
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -51,6 +52,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatIconModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatSelectModule,
+    MatFormFieldModule,
 
   ],
   providers: [

@@ -23,26 +23,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
-    var base64atob = JSON.parse(atob(base64));
-
-    return base64atob
-  }
 
   loginUser() {
     this._auth.loginUser(this.loginUserData)
       .subscribe(
         res => {
           console.log("Login res:", res);
-          localStorage.setItem('token', res.token)
-          var expireTime = this.parseJwt(res.token);
-          var timeStamp = Math.floor(Date.now() / 1000);
-          var timeCheck = expireTime.exp - timeStamp
 
-          console.log("timeCheck:", timeCheck)
-
+          this._auth.setToken(res.token);
           this.snackBarMessage = res.message;
 
           this._snackBar.open(this.snackBarMessage, null, {

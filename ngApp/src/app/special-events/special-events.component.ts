@@ -18,6 +18,11 @@ export class SpecialEventsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getSpecialEvents();
+
+  }
+
+  getSpecialEvents() {
 
     this._eventService.getSpecialEvents()
       .subscribe(
@@ -31,6 +36,7 @@ export class SpecialEventsComponent implements OnInit {
           }
         }
       )
+
   }
 
 }
