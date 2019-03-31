@@ -26,3 +26,4 @@
  app.use('/api', api.router); // When you use Root API
  app.use('/api/authorize', api.authorize); // When you use authorize API
  app.use('/api/event', api.event); // When you use authorize API
+ app.use('/api/user', api.user); // When you use authorize API

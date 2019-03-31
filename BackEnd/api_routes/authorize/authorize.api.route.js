@@ -4,28 +4,27 @@ const router = express.Router();
 const User = require('../../models/user.model');
 const tokenSecretKey = 'harrypotter';
 
-router.post('/register', function(req, res) {
-    var user = new User();
-    user.userName = req.body.userName;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.save(function(error, registerdUser) {
+function verifyToken(req, res, next) {
+    if (!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request');
+    }
 
-        if (error) {
-            console.log(error)
-        } else {
+    let token = req.headers.authorization.split(' ')[1];
 
-            let payload = {
-                subject: registerdUser._id
-            };
-            let token = jwt.sign(payload, tokenSecretKey);
-            res.status(200).send({
-                token
-            });
+    if (token === 'null') {
+        return res.status(401).send('Unauthorized request');
+    }
 
-        }
-    });
-})
+    let payload = jwt.verify(token, tokenSecretKey);
+    if (!payload) {
+        return res.status(401).send('Unauthorized request');
+    }
+
+    req.userId = payload.subject;
+
+    next();
+
+}
 
 router.post('/login', function(req, res) {
     var userData = req.body;
@@ -110,5 +109,7 @@ router.post('/login', function(req, res) {
 
 
 module.exports = {
-    router: router
+    router: router,
+    verifyToken: verifyToken
+
 };

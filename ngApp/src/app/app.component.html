@@ -1,27 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="nav-button-row">
-        <button routerLink="/" mat-raised-button color="primary">Home</button>
-        <button routerLink="/events" routerLinkActive="active" mat-raised-button>Events</button>
-        <button routerLink="/special" routerLinkActive="active" mat-raised-button>Members Special</button>
-        <button routerLink="/profile" outerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button color="primary">Profile</button>
-        <button routerLink="/login" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Login</button>
-        <button routerLink="/register" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Register</button>
-        <button [matMenuTriggerFor]="systemSetup" *ngIf="_authService.isAuthenticated()" mat-raised-button>System
-      Setup</button>
-        <button (click)="_authService.logoutUser()" *ngIf="_authService.isAuthenticated()" mat-raised-button color="warn">Logout</button>
+<div>
 
+
+    <mat-toolbar color="primary" class="nav-button-row">
+        <mat-toolbar-row>
+            <button routerLink="/" mat-raised-button>Home</button>
+            <button routerLink="/events" routerLinkActive="active" mat-raised-button>Events</button>
+            <button routerLink="/special" routerLinkActive="active" mat-raised-button>Members Special</button>
+            <button routerLink="/profile" routerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button color="primary">Profile</button>
+            <button routerLink="/login" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Login</button>
+            <button routerLink="/register" routerLinkActive="active" *ngIf="!_authService.isAuthenticated()" mat-raised-button color="primary">Register</button>
+            <button [matMenuTriggerFor]="systemSetup" *ngIf="_authService.isAuthenticated()" mat-raised-button>System
+        Setup</button>
+            <button (click)="_authService.logoutUser()" *ngIf="_authService.isAuthenticated()" mat-raised-button color="warn">Logout</button>
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-menu #systemSetup="matMenu">
+        <button routerLink="/usermanagement" outerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button>Users
+      management</button>
+        <button routerLink="/usertypelist" *ngIf="_authService.isAuthenticated()" mat-menu-item> User Type</button>
+    </mat-menu>
+
+
+
+
+    <div class="container">
+        <router-outlet></router-outlet>
     </div>
-
-</nav>
-
-<mat-menu #systemSetup="matMenu">
-    <button routerLink="/usermanagement" outerLinkActive="active" *ngIf="_authService.isAuthenticated()" mat-raised-button>Users
-    management</button>
-    <button routerLink="/usertypelist" *ngIf="_authService.isAuthenticated()" mat-menu-item> User Type</button>
-</mat-menu>
-
-
-
-<div class="container">
-    <router-outlet></router-outlet>
-</div>

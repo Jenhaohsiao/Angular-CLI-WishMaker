@@ -3,6 +3,7 @@ const router = express.Router();
 const apiHelper = require('./api.route.helper');
 const authorizeApi = require('./authorize/authorize.api.route');
 const eventApi = require('./event/event.api.route');
+const userApi = require('./user/user.api.route');
 
 
 router.get('/', function(req, res) {
@@ -14,4 +15,5 @@ module.exports = {
     router: router,
     authorize: authorizeApi.router,
     event: eventApi.router,
+    user: userApi.router,
 }

@@ -22,8 +22,7 @@ body {
 
 /* For remove blue color outline when user push any button -end*/
 
-.nav-button-row button,
-.nav-button-row a {
+.nav-button-row button {
     margin-right: 8px;
 }
 

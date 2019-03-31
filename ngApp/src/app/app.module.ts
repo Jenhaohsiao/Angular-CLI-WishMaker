@@ -22,6 +22,8 @@ import { UserTypeListComponent } from './user-type-list/user-type-list.component
 import { UserTypeEditComponent } from './user-type-edit/user-type-edit.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from "@angular/material";
+import { MatToolbarModule } from "@angular/material/toolbar";
+
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { MatSnackBarModule } from "@angular/material";
     MatMenuModule,
     MatIconModule,
     MatSnackBarModule,
+    MatToolbarModule,
+
   ],
   providers: [
     AuthService,
