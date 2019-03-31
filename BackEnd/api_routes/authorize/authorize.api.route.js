@@ -15,14 +15,28 @@ function verifyToken(req, res, next) {
         return res.status(401).send('Unauthorized request');
     }
 
-    let payload = jwt.verify(token, tokenSecretKey);
-    if (!payload) {
-        return res.status(401).send('Unauthorized request');
-    }
+    // let payload = jwt.verify(token, tokenSecretKey);
+    // if (!payload) {
+    //     return res.status(401).send('Unauthorized request');
+    // } else {
+    //     req.userId = payload.subject;
+    //     next();
+    // }
 
-    req.userId = payload.subject;
+    jwt.verify(token, tokenSecretKey, function(err, decoded) {
+        if (err) {
+            res.status(401),
+                res.json({
+                    success: false,
+                    message: 'Token invalid'
+                });
+        } else {
+            req.userId = decoded.subject;
+            next();
+        }
+    })
 
-    next();
+
 
 }
 
