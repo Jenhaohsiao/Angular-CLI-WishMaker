@@ -36,8 +36,6 @@ export class LoginComponent implements OnInit {
           this._snackBar.open(this.snackBarMessage, null, {
             duration: this.snackBarDurationInSeconds * 1000,
           });
-
-
           this._router.navigate(['/']);
         },
 

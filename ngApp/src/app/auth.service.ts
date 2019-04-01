@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   loginUser(user): Observable<any> {
+
     return this.http.post<any>(this._loginUrl, user)
   }
 
@@ -32,7 +33,42 @@ export class AuthService {
   }
 
 
+  getLeftTime() {
+
+    const _token = localStorage.getItem('token')
+    if (_token) {
+      const _decodedToken = this.parseJwt(_token);
+      const _expTime = _decodedToken.exp * 1000;
+      const _timeGap: number = (_expTime - (new Date().getTime())) / 1000;
+
+      console.log((new Date().getTime()), " - ");
+      console.log(_expTime);
+      console.log("timeGap:", _timeGap);
+      console.log("=======================");
+
+      return _timeGap
+    } else {
+      return;
+    }
+
+  }
+
+  isExpired() {
+    const _timeGap = this.getLeftTime()
+    var _isExpired = false;
+
+    if ((_timeGap <= 0) || (_timeGap == undefined)) {
+      _isExpired = true;
+      // this.logoutUser();
+    } else {
+      _isExpired = false;
+    }
+    console.log("isExpired:", _isExpired);
+    return _isExpired
+  }
+
   logoutUser() {
+    console.log("logoutUser");
     localStorage.clear();
     this._router.navigate(['/events'])
 
@@ -56,11 +92,19 @@ export class AuthService {
 
 
   parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace('-', '+').replace('_', '/');
-    var base64atob = JSON.parse(atob(base64));
 
-    return base64atob
+    try {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace('-', '+').replace('_', '/');
+      var base64atob = JSON.parse(atob(base64));
+
+      return base64atob
+
+    } catch (err) {
+      console.log("parseJwt err:", err)
+
+    }
+
   }
 
 }

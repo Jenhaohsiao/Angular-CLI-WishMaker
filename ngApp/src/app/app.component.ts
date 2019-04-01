@@ -7,7 +7,15 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'WishMaker';
-  constructor(private _authService: AuthService) {
+  constructor(
+    private _authService: AuthService
+  ) { }
 
+
+  ngOnInit() {
   }
+
+
+
+
 }

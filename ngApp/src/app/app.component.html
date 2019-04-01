@@ -14,6 +14,8 @@
             <button (click)="_authService.logoutUser()" *ngIf="_authService.isAuthenticated()" mat-raised-button color="warn">Logout</button>
 
         </mat-toolbar-row>
+
+
     </mat-toolbar>
 
     <mat-menu #systemSetup="matMenu">
@@ -23,6 +25,9 @@
     </mat-menu>
 
 
+
+    <div> Exp:{{_authService.isExpired()}}</div>
+    <!-- <div> time:{{_authService.getLeftTime()}}</div> -->
 
 
     <div class="container">

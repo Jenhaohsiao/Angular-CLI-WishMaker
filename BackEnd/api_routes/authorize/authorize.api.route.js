@@ -90,9 +90,8 @@ router.post('/login', function(req, res) {
                             let payload = setJWTPayload(user);
 
                             let token = jwt.sign(payload, tokenSecretKey, {
-                                expiresIn: '600s'
+                                expiresIn: '30s'
                             });
-
 
                             res.status(200)
                             res.json({
